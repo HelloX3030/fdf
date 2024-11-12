@@ -6,11 +6,11 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 11:59:44 by lseeger           #+#    #+#             */
-/*   Updated: 2024/10/28 11:49:33 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/12 11:54:39 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 int	print_l(const char *s, int l)
 {

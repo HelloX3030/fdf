@@ -6,11 +6,11 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 11:41:34 by lseeger           #+#    #+#             */
-/*   Updated: 2024/10/28 11:36:22 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/12 11:53:24 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 int	get_next_specifier(const char *s)
 {

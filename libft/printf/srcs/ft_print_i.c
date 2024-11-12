@@ -6,11 +6,11 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 09:36:50 by lseeger           #+#    #+#             */
-/*   Updated: 2024/10/28 12:33:16 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/12 11:53:59 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 static int	ft_print_i_helper(int n)
 {

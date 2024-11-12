@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/17 15:25:13 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/01 09:34:26 by lseeger          ###   ########.fr       */
+/*   Created: 2024/11/01 09:22:12 by lseeger           #+#    #+#             */
+/*   Updated: 2024/11/12 11:11:53 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ bool	read_buffer(int fd, char *buffer, char **nl, ssize_t *nl_r_len)
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE + 1];
+	static char	buffer[MAX_FILE_DESCRIPTOR][BUFFER_SIZE + 1];
 	char		*next_nl;
 	char		*nl;
 	ssize_t		nl_r_len;
@@ -90,36 +90,36 @@ char	*get_next_line(int fd)
 		return (NULL);
 	nl = NULL;
 	nl_r_len = 0;
-	if (handle_start_buffer(buffer, &nl, &nl_r_len))
+	if (handle_start_buffer(buffer[fd], &nl, &nl_r_len))
 		return (nl);
 	while (1)
 	{
-		if (read_buffer(fd, buffer, &nl, &nl_r_len))
+		if (read_buffer(fd, buffer[fd], &nl, &nl_r_len))
 			return (nl);
-		next_nl = get_next_nl(buffer);
+		next_nl = get_next_nl(buffer[fd]);
 		if (next_nl)
-			return (handle_found_nl(buffer, next_nl, nl));
-		if (buffer_join(&nl, buffer, &nl_r_len))
+			return (handle_found_nl(buffer[fd], next_nl, nl));
+		if (buffer_join(&nl, buffer[fd], &nl_r_len))
 			return (NULL);
 	}
 }
 
-// int	main(void)
+// int main(void)
 // {
-// 	int		fd;
-// 	char	*next_line;
+// 	int fd;
+// 	char *next_line;
 
-// 	fd = open("e.txt", O_RDONLY);
+// 	fd = open("test.txt", O_RDONLY);
 // 	if (fd == -1)
 // 	{
-// 		perror("Failed to open e.txt");
+// 		perror("Failed to open test.txt");
 // 		return (-1);
 // 	}
 // 	next_line = get_next_line(fd);
 // 	while (next_line)
 // 	{
 // 		printf("\n-----------------------\n%s\n-----------------------",
-// 			next_line);
+// 				next_line);
 // 		free(next_line);
 // 		next_line = get_next_line(fd);
 // 	}

@@ -6,11 +6,11 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:08:39 by lseeger           #+#    #+#             */
-/*   Updated: 2024/10/28 12:14:16 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/12 11:53:43 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 int	ft_print_c(va_list args)
 {
