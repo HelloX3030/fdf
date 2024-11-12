@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 09:22:12 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/12 11:11:53 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/12 15:10:31 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	failure_cleanup(char *nl)
 char	*handle_found_nl(char *buffer, char *next_nl, char *nl)
 {
 	const ptrdiff_t	found_len = next_nl - buffer + 1;
-	const ssize_t	nl_len = ft_strlen(nl);
+	const size_t	nl_len = ft_strlen(nl);
 	char			*new_nl;
 
 	new_nl = malloc(nl_len + found_len + 1);
@@ -35,7 +35,7 @@ char	*handle_found_nl(char *buffer, char *next_nl, char *nl)
 	return (new_nl);
 }
 
-bool	handle_start_buffer(char *buffer, char **nl, ssize_t *nl_r_len)
+bool	handle_start_buffer(char *buffer, char **nl, size_t *nl_r_len)
 {
 	char	*next_nl;
 
@@ -55,7 +55,7 @@ bool	handle_start_buffer(char *buffer, char **nl, ssize_t *nl_r_len)
 	}
 }
 
-bool	read_buffer(int fd, char *buffer, char **nl, ssize_t *nl_r_len)
+bool	read_buffer(int fd, char *buffer, char **nl, size_t *nl_r_len)
 {
 	char	*new_str;
 	ssize_t	bytes_read;
@@ -81,10 +81,10 @@ bool	read_buffer(int fd, char *buffer, char **nl, ssize_t *nl_r_len)
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[MAX_FILE_DESCRIPTOR][BUFFER_SIZE + 1];
+	static char	buffer[OPEN_MAX][BUFFER_SIZE + 1];
 	char		*next_nl;
 	char		*nl;
-	ssize_t		nl_r_len;
+	size_t		nl_r_len;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
@@ -103,26 +103,3 @@ char	*get_next_line(int fd)
 			return (NULL);
 	}
 }
-
-// int main(void)
-// {
-// 	int fd;
-// 	char *next_line;
-
-// 	fd = open("test.txt", O_RDONLY);
-// 	if (fd == -1)
-// 	{
-// 		perror("Failed to open test.txt");
-// 		return (-1);
-// 	}
-// 	next_line = get_next_line(fd);
-// 	while (next_line)
-// 	{
-// 		printf("\n-----------------------\n%s\n-----------------------",
-// 				next_line);
-// 		free(next_line);
-// 		next_line = get_next_line(fd);
-// 	}
-// 	close(fd);
-// 	return (0);
-// }
