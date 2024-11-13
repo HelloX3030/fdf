@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_draw_map.c                                      :+:      :+:    :+:   */
+/*   ft_connect_tiles.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 12:35:33 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/13 13:22:43 by lseeger          ###   ########.fr       */
+/*   Created: 2024/11/13 13:20:50 by lseeger           #+#    #+#             */
+/*   Updated: 2024/11/13 13:30:26 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_draw_map(t_map *map, mlx_image_t *img, uint32_t color)
+void	ft_connect_tiles(t_point *start, t_point *end, mlx_image_t *img,
+		uint32_t color)
 {
-	t_point	start;
-	t_point	end;
-	int		x;
-	int		y;
+	t_point	start_pxl;
+	t_point	end_pxl;
 
-	y = -1;
-	while (++y < map->height)
-	{
-		x = -1;
-		while (++x < map->width)
-		{
-			if (x < map->width - 1)
-			{
-				ft_set_point(&start, x, y, 0);
-				ft_set_point(&end, x + 1, y, 0);
-				ft_connect_tiles(&start, &end, img, color);
-			}
-		}
-	}
+	start_pxl.x = ft_get_isometric_x(start->x * TILE_SIZE, start->y
+			* TILE_SIZE);
+	start_pxl.y = ft_get_isometric_y(start->x * TILE_SIZE, start->y * TILE_SIZE,
+			start->z);
+	end_pxl.x = 0;
+	end_pxl.y = 0;
+	(void)end;
+	ft_draw_line(img, &start_pxl, &end_pxl, color);
 }

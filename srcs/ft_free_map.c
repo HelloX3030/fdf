@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_draw_map.c                                      :+:      :+:    :+:   */
+/*   ft_free_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 12:35:33 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/13 13:22:43 by lseeger          ###   ########.fr       */
+/*   Created: 2024/11/13 13:16:11 by lseeger           #+#    #+#             */
+/*   Updated: 2024/11/13 13:16:27 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_draw_map(t_map *map, mlx_image_t *img, uint32_t color)
+void	ft_free_map(t_map *map)
 {
-	t_point	start;
-	t_point	end;
-	int		x;
-	int		y;
+	int	i;
 
-	y = -1;
-	while (++y < map->height)
-	{
-		x = -1;
-		while (++x < map->width)
-		{
-			if (x < map->width - 1)
-			{
-				ft_set_point(&start, x, y, 0);
-				ft_set_point(&end, x + 1, y, 0);
-				ft_connect_tiles(&start, &end, img, color);
-			}
-		}
-	}
+	i = -1;
+	while (++i < map->height)
+		free(map->map[i]);
+	free(map->map);
+	free(map);
 }

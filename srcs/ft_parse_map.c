@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:51:55 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/13 12:56:54 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/13 13:29:21 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_map	*ft_parse_map(char *file_name)
 	int		x;
 	int		y;
 
+	(void)file_name;
 	map = malloc(sizeof(t_map));
 	if (!map)
 		ft_error();

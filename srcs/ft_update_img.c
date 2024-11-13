@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:41:10 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/13 12:49:59 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/13 13:30:39 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,5 @@ mlx_image_t	*ft_update_img(mlx_t *mlx, mlx_image_t *img)
 			ft_error();
 		return (img);
 	}
+	return (img);
 }

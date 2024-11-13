@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:48:51 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/13 12:51:40 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/13 13:20:35 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 # define WIDTH 256
 # define HEIGHT 256
+# define TILE_SIZE 32
 
 // colors
 # define COLOR_BLACK 0x000000FF
@@ -70,7 +71,9 @@ void		ft_draw_line(mlx_image_t *img, t_point *start, t_point *end,
 void		ft_draw_map(t_map *map, mlx_image_t *img, uint32_t color);
 mlx_image_t	*ft_update_img(mlx_t *mlx, mlx_image_t *img);
 
-// parsing functions
+// map functions
 t_map		*ft_parse_map(char *file_name);
-
+void		ft_free_map(t_map *map);
+void		ft_connect_tiles(t_point *start, t_point *end, mlx_image_t *img,
+				uint32_t color);
 #endif

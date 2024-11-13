@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:21:44 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/13 12:44:46 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/13 13:29:14 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(void)
 	mlx_image_t	*img;
 	t_map		*map;
 
+	map = ft_parse_map("maps/42.fdf");
 	mlx_set_setting(MLX_MAXIMIZED, true);
 	mlx = mlx_init(WIDTH, HEIGHT, "fdf", true);
 	if (!mlx)
@@ -26,6 +27,7 @@ int	main(void)
 	ft_draw_map(map, img, COLOR_RED);
 	mlx_loop(mlx);
 	mlx_delete_image(mlx, img);
+	ft_free_map(map);
 	mlx_terminate(mlx);
 	return (0);
 }
