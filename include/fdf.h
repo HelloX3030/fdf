@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:48:51 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/13 11:23:13 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/13 12:12:38 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "../libft/printf/include/ft_printf.h"
 # include "MLX42/MLX42.h"
 # include <errno.h>
+# include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
@@ -26,8 +27,38 @@
 # define WIDTH 256
 # define HEIGHT 256
 
-static void	ft_error(void);
-int			get_isometric_x(int x, int y);
-int			get_isometric_y(int x, int y, int z);
+// colors
+# define COLOR_BLACK 0x000000FF
+# define COLOR_WHITE 0xFFFFFFFF
+# define COLOR_RED 0xFF0000FF
+# define COLOR_GREEN 0x00FF00FF
+# define COLOR_BLUE 0x0000FFFF
+# define COLOR_YELLOW 0xFFFF00FF
+# define COLOR_CYAN 0x00FFFFFF
+# define COLOR_MAGENTA 0xFF00FFFF
+# define COLOR_ORANGE 0xFFA500FF
+# define COLOR_PURPLE 0x800080FF
+# define COLOR_BROWN 0xA52A2AFF
+# define COLOR_GRAY 0x808080FF
+# define COLOR_LIGHT_GRAY 0xD3D3D3FF
+# define COLOR_DARK_GRAY 0xA9A9A9FF
+
+// base structs
+typedef struct s_point
+{
+	int	x;
+	int	y;
+	int	z;
+}		t_point;
+void	ft_set_point(t_point *point, int x, int y, int z);
+
+// base functions
+void	ft_error(void);
+
+// graphic base functions
+int		ft_get_isometric_x(int x, int y);
+int		ft_get_isometric_y(int x, int y, int z);
+void	ft_draw_line(mlx_image_t *img, t_point *start, t_point *end,
+			uint32_t color);
 
 #endif

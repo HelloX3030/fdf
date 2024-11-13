@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   isometric_projection.c                             :+:      :+:    :+:   */
+/*   ft_set_point.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 13:46:48 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/12 13:48:15 by lseeger          ###   ########.fr       */
+/*   Created: 2024/11/13 12:12:57 by lseeger           #+#    #+#             */
+/*   Updated: 2024/11/13 12:13:12 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "fdf.h"
 
-int	get_isometric_x(int x, int y)
+void	ft_set_point(t_point *point, int x, int y, int z)
 {
-	return (x - y);
-}
-
-int	get_isometric_y(int x, int y, int z)
-{
-	return ((x + z) / y - y);
+	point->x = x;
+	point->y = y;
+	point->z = z;
 }

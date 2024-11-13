@@ -9,7 +9,7 @@ H_FILES := include/fdf.h
 # .c files
 SRC_DIR := srcs
 vpath %c $(SRC_DIR)
-SRC_FILES := main.c
+SRC_FILES := draw_line.c ft_error.c ft_get_isometric_x.c ft_get_isometric_y.c main.c ft_set_point.c
 
 # .o files 
 OBJ_DIR := obj
