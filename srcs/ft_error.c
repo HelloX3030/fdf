@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 13:21:44 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/13 11:25:49 by lseeger          ###   ########.fr       */
+/*   Created: 2024/11/13 11:21:40 by lseeger           #+#    #+#             */
+/*   Updated: 2024/11/13 11:23:10 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "fdf.h"
 
-int	main(void)
+static void	ft_error(void)
 {
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	FILE		*file;
+	int	has_error;
 
-	mlx_set_setting(MLX_MAXIMIZED, true);
-	mlx = mlx_init(WIDTH, HEIGHT, "fdf", true);
-	if (!mlx)
-		ft_error();
-	img = mlx_new_image(mlx, WIDTH, HEIGHT);
-	if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
-		ft_error();
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
-	return (0);
+	has_error = 0;
+	if (errno != 0)
+	{
+		ft_printf("Default Error: %s\n", strerror(errno));
+		has_error = 1;
+	}
+	if (mlx_errno != 0)
+	{
+		ft_printf("MLX42 Error: %s\n", mlx_strerror(mlx_errno));
+		has_error = 1;
+	}
+	if (!has_error)
+	{
+		ft_printf("ft_error called without error...\n");
+	}
+	exit(EXIT_FAILURE);
 }
