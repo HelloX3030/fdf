@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:48:51 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/13 12:12:38 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/13 12:51:40 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,31 @@
 // base structs
 typedef struct s_point
 {
-	int	x;
-	int	y;
-	int	z;
-}		t_point;
-void	ft_set_point(t_point *point, int x, int y, int z);
+	int		x;
+	int		y;
+	int		z;
+}			t_point;
+void		ft_set_point(t_point *point, int x, int y, int z);
+
+typedef struct s_map
+{
+	int		width;
+	int		height;
+	int		**map;
+}			t_map;
 
 // base functions
-void	ft_error(void);
+void		ft_error(void);
 
 // graphic base functions
-int		ft_get_isometric_x(int x, int y);
-int		ft_get_isometric_y(int x, int y, int z);
-void	ft_draw_line(mlx_image_t *img, t_point *start, t_point *end,
-			uint32_t color);
+int			ft_get_isometric_x(int x, int y);
+int			ft_get_isometric_y(int x, int y, int z);
+void		ft_draw_line(mlx_image_t *img, t_point *start, t_point *end,
+				uint32_t color);
+void		ft_draw_map(t_map *map, mlx_image_t *img, uint32_t color);
+mlx_image_t	*ft_update_img(mlx_t *mlx, mlx_image_t *img);
+
+// parsing functions
+t_map		*ft_parse_map(char *file_name);
 
 #endif

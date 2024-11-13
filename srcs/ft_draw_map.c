@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_draw_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 13:21:44 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/13 12:44:46 by lseeger          ###   ########.fr       */
+/*   Created: 2024/11/13 12:35:33 by lseeger           #+#    #+#             */
+/*   Updated: 2024/11/13 13:01:15 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "fdf.h"
 
-int	main(void)
+void	ft_draw_map(t_map *map, mlx_image_t *img, uint32_t color)
 {
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	t_map		*map;
+	t_point	start;
+	t_point	end;
+	int		x;
+	int		y;
 
-	mlx_set_setting(MLX_MAXIMIZED, true);
-	mlx = mlx_init(WIDTH, HEIGHT, "fdf", true);
-	if (!mlx)
-		ft_error();
-	img = ft_update_img(mlx, NULL);
-	ft_draw_map(map, img, COLOR_RED);
-	mlx_loop(mlx);
-	mlx_delete_image(mlx, img);
-	mlx_terminate(mlx);
-	return (0);
+	y = -1;
+	while (++y < map->height)
+	{
+		x = -1;
+		while (++x < map->width)
+		{
+			if (x > 0)
+			{
+				ft_set_point(&start, x - 1, y, 0);
+				ft_set_point(&end, x, y, 0);
+				ft_draw_line(img, &start, &end, color);
+			}
+		}
+	}
 }
