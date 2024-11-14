@@ -6,17 +6,22 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:21:40 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/13 12:06:22 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/14 14:14:37 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_error(void)
+void	ft_error(char *msg)
 {
 	int	has_error;
 
 	has_error = 0;
+	if (msg != NULL)
+	{
+		ft_printf("Custom Error msg: %s\n", msg);
+		has_error = 1;
+	}
 	if (errno != 0)
 	{
 		ft_printf("Default Error: %s\n", strerror(errno));

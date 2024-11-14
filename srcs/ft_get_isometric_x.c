@@ -6,11 +6,13 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:34:24 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/13 11:53:52 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/14 13:05:32 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_get_isometric_x(int x, int y)
+#include "fdf.h"
+
+int	ft_get_isometric_x(int x, int z)
 {
-	return (x - y);
+	return ((sqrt(3) / 2) * (x - z));
 }

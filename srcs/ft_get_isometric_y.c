@@ -6,11 +6,11 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:34:50 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/13 11:54:05 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/14 12:56:46 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_get_isometric_y(int x, int y, int z)
 {
-	return ((x + z) / y - y);
+	return ((x + z) / 2 - y);
 }

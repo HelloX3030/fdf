@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:29:04 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/13 12:19:30 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/14 13:17:40 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ void	ft_draw_line(mlx_image_t *img, t_point *start, t_point *end,
 	err = dif.x - dif.y;
 	while (1)
 	{
-		ft_printf("x: %d, y: %d\n", start->x, start->y);
-		mlx_put_pixel(img, start->x, start->y, color);
+		if (start->x >= 0 && (uint32_t)start->x < img->width && start->y >= 0
+			&& (uint32_t)start->y < img->height)
+			mlx_put_pixel(img, start->x, start->y, color);
 		if (start->x == end->x && start->y == end->y)
 			break ;
 		e2 = 2 * err;

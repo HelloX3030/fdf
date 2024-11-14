@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:48:51 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/13 13:20:35 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/14 14:21:20 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 # include <string.h>
 # include <unistd.h>
 
-# define WIDTH 256
-# define HEIGHT 256
-# define TILE_SIZE 32
+# define WIDTH 2048
+# define HEIGHT 2048
+# define TILE_SIZE 200
 
 // colors
 # define COLOR_BLACK 0x000000FF
@@ -61,7 +61,7 @@ typedef struct s_map
 }			t_map;
 
 // base functions
-void		ft_error(void);
+void		ft_error(char *msg);
 
 // graphic base functions
 int			ft_get_isometric_x(int x, int y);
