@@ -6,10 +6,11 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 09:22:12 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/12 15:10:31 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/19 12:08:57 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../libft/libft.h"
 #include "get_next_line.h"
 
 void	failure_cleanup(char *nl)

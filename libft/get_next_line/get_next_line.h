@@ -6,14 +6,13 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 16:17:13 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/12 15:09:35 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/19 12:08:33 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include "../libft/libft.h"
 # include <fcntl.h>
 # include <limits.h>
 # include <stdbool.h>

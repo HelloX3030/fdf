@@ -70,4 +70,4 @@ re: fclean all
 debug: $(CFLAGS) += $(DEBUG_FLAGS)
 debug: re
 
-.PHONY: all clean fclean re bonus debug
+.PHONY: all clean fclean re debug

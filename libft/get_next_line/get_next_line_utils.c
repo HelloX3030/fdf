@@ -6,10 +6,11 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 16:18:55 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/12 15:10:41 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/19 12:07:10 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../libft/libft.h"
 #include "get_next_line.h"
 
 char	*get_next_nl(char *s)

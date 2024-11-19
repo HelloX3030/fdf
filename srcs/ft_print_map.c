@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_print_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 09:50:01 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/19 12:06:39 by lseeger          ###   ########.fr       */
+/*   Created: 2024/11/19 10:17:28 by lseeger           #+#    #+#             */
+/*   Updated: 2024/11/19 10:18:11 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fdf.h"
 
-size_t	ft_strlen(const char *s)
+void	ft_print_map(t_map *map)
 {
-	int	i;
+	int	x;
+	int	y;
 
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
+	y = -1;
+	while (++y < map->height)
+	{
+		x = -1;
+		while (++x < map->width)
+			ft_printf("%d ", map->map[y][x]);
+		ft_printf("\n");
+	}
 }
