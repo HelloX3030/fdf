@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_free_strs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 13:21:44 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/19 15:54:35 by lseeger          ###   ########.fr       */
+/*   Created: 2024/11/19 16:04:19 by lseeger           #+#    #+#             */
+/*   Updated: 2024/11/19 16:04:44 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-int	main(void)
+void	ft_free_strs(char **strs)
 {
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	t_map		*map;
+	int	i;
 
-	map = ft_parse_map("maps/42.fdf");
-	ft_print_map(map);
-	mlx_set_setting(MLX_MAXIMIZED, true);
-	mlx = mlx_init(WIDTH, HEIGHT, "fdf", true);
-	if (!mlx)
-		ft_error(NULL);
-	img = ft_update_img(mlx, NULL);
-	ft_draw_map(map, img, COLOR_BLUE);
-	mlx_loop(mlx);
-	mlx_delete_image(mlx, img);
-	ft_free_map(map);
-	mlx_terminate(mlx);
-	return (0);
+	i = -1;
+	while (strs[++i])
+		free(strs[i]);
+	free(strs);
 }

@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:48:51 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/19 15:43:12 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/19 16:03:47 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_map
 // util functions
 int			ft_get_line_count(int fd);
 bool		ft_in_charset(char c, char *set);
+void		ft_free_strs(char **strs);
 
 // map functions
 void		ft_print_map(t_map *map);
