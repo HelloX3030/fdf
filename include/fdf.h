@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:48:51 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/19 12:03:17 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/19 15:43:12 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,14 @@ typedef struct s_map
 	int		**map;
 }			t_map;
 
+// util functions
+int			ft_get_line_count(int fd);
+bool		ft_in_charset(char c, char *set);
+
+// map functions
+void		ft_print_map(t_map *map);
+t_map		*ft_malloc_map(char *file_name);
+
 // base functions
 void		ft_error(char *msg);
 
@@ -76,4 +84,5 @@ t_map		*ft_parse_map(char *file_name);
 void		ft_free_map(t_map *map);
 void		ft_connect_tiles(t_point *start, t_point *end, mlx_image_t *img,
 				uint32_t color);
+
 #endif

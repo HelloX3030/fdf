@@ -4,6 +4,8 @@ fdf
 # *.pdf
 *.a
 # *.md
+maps
+obj
 
 # Prerequisites
 *.d

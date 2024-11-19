@@ -40,7 +40,7 @@ $(OBJ_DIR):
 
 # Clean
 clean:
-	rm -f $(OBJ_FILES)
+	rm -rf $(OBJ_DIR)
 	rm -rf $(OBJ_DIR)
 
 # Fclean

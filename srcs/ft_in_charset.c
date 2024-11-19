@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_map.c                                     :+:      :+:    :+:   */
+/*   ft_in_charset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 10:17:28 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/19 14:07:03 by lseeger          ###   ########.fr       */
+/*   Created: 2024/11/19 15:36:43 by lseeger           #+#    #+#             */
+/*   Updated: 2024/11/19 15:43:03 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
-void	ft_print_map(t_map *map)
+bool	ft_in_charset(char c, char *set)
 {
-	int	x;
-	int	y;
-
-	ft_printf("print_map\n");
-	ft_printf("width: %d\n", map->width);
-	ft_printf("height: %d\n", map->height);
-	y = -1;
-	while (++y < map->height)
+	while (*set)
 	{
-		x = -1;
-		while (++x < map->width)
-			ft_printf("%d ", map->map[y][x]);
-		ft_printf("\n");
+		if (c == *set)
+			return (true);
+		set++;
 	}
+	return (false);
 }

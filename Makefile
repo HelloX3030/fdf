@@ -9,7 +9,7 @@ H_FILES := include/fdf.h
 # .c files
 SRC_DIR := srcs
 vpath %c $(SRC_DIR)
-SRC_FILES := draw_line.c ft_connect_tiles.c ft_draw_map.c ft_error.c ft_free_map.c ft_get_isometric_x.c ft_get_isometric_y.c ft_parse_map.c ft_set_point.c ft_update_img.c main.c
+SRC_FILES := draw_line.c ft_connect_tiles.c ft_draw_map.c ft_error.c ft_free_map.c ft_get_isometric_x.c ft_get_isometric_y.c ft_parse_map.c ft_set_point.c ft_update_img.c main.c ft_print_map.c ft_get_line_count.c ft_malloc_map.c ft_in_charset.c
 
 # .o files 
 OBJ_DIR := obj
@@ -55,7 +55,7 @@ $(TEST_OBJ): %.o: %.c $(H_FILES)
 # clean 
 clean:
 	make -C $(LIBFT_DIR) clean
-	rm -f $(OBJ_FILES)
+	rm -rf $(OBJ_DIR)
 	rm -rf $(LIBMLX)/build
 
 # fclean
