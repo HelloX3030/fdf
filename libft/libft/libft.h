@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 11:25:04 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/20 14:04:55 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/20 16:23:45 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-int					ft_htoi(const char *str);
 int					ft_isprint(int c);
 char				*ft_itoa(int n);
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
@@ -73,5 +72,13 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 void				ft_lstdelone(t_list *lst, void (*del)(void *));
 t_list				*ft_lstlast(t_list *lst);
 t_list				*ft_lstnew(void *content);
+
+// custom functions
+bool				ft_aisi(char *str);
+bool				ft_aish(char *str);
+int					ft_htoi(const char *str);
+bool				ft_in_charset(char c, char *set);
+void				ft_free_strs(char **strs);
+void				ft_print_strs(char **str, int insertion);
 
 #endif

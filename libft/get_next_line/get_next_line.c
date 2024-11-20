@@ -6,17 +6,18 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 09:22:12 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/19 12:08:57 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/20 16:00:30 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "get_next_line.h"
 
-void	failure_cleanup(char *nl)
+char	*get_buffer(int fd)
 {
-	if (nl)
-		free(nl);
+	static char	buffer[OPEN_MAX][BUFFER_SIZE + 1];
+
+	return (buffer[fd]);
 }
 
 char	*handle_found_nl(char *buffer, char *next_nl, char *nl)
@@ -82,25 +83,26 @@ bool	read_buffer(int fd, char *buffer, char **nl, size_t *nl_r_len)
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[OPEN_MAX][BUFFER_SIZE + 1];
-	char		*next_nl;
-	char		*nl;
-	size_t		nl_r_len;
+	char	*buffer;
+	char	*next_nl;
+	char	*nl;
+	size_t	nl_r_len;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
+	buffer = get_buffer(fd);
 	nl = NULL;
 	nl_r_len = 0;
-	if (handle_start_buffer(buffer[fd], &nl, &nl_r_len))
+	if (handle_start_buffer(buffer, &nl, &nl_r_len))
 		return (nl);
 	while (1)
 	{
-		if (read_buffer(fd, buffer[fd], &nl, &nl_r_len))
+		if (read_buffer(fd, buffer, &nl, &nl_r_len))
 			return (nl);
-		next_nl = get_next_nl(buffer[fd]);
+		next_nl = get_next_nl(buffer);
 		if (next_nl)
-			return (handle_found_nl(buffer[fd], next_nl, nl));
-		if (buffer_join(&nl, buffer[fd], &nl_r_len))
+			return (handle_found_nl(buffer, next_nl, nl));
+		if (buffer_join(&nl, buffer, &nl_r_len))
 			return (NULL);
 	}
 }

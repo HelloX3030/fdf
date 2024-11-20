@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_in_charset.c                                    :+:      :+:    :+:   */
+/*   ft_aish.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 15:36:43 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/19 15:43:03 by lseeger          ###   ########.fr       */
+/*   Created: 2024/11/20 16:14:34 by lseeger           #+#    #+#             */
+/*   Updated: 2024/11/20 16:29:28 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "libft.h"
 
-bool	ft_in_charset(char c, char *set)
+bool	ft_aish(char *str)
 {
-	while (*set)
+	if (!str)
+		return (false);
+	while (*str)
 	{
-		if (c == *set)
-			return (true);
-		set++;
+		if (!ft_isdigit(*str) && *str != ' ' && !ft_in_charset(*str,
+				"-xXabcdefABCDEF"))
+			return (false);
+		str++;
 	}
-	return (false);
+	return (true);
 }

@@ -6,36 +6,39 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:51:55 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/20 14:02:22 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/20 16:32:59 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
-static void	parse_pair(int fd, t_map *map, char **pairs, t_point2d *pos)
+static void	parse_pair(int fd, t_map *map, char **pairs)
 {
 	char	**split;
 
-	split = ft_split(pairs[pos->x], ',');
-	free(pairs[pos->x]);
+	split = ft_split(pairs[map->pos.x], ',');
+	free(pairs[map->pos.x]);
 	if (!split)
 	{
 		close(fd);
 		ft_free_map(map);
-		while (pairs[++pos->x])
-			free(pairs[pos->x]);
+		while (pairs[++map->pos.x])
+			free(pairs[map->pos.x]);
 		free(pairs);
 	}
-	map->map[pos->x][pos->y] = ft_atoi(split[0]);
-	if (split[1])
-		map->color[pos->x][pos->y] = ft_htoi(split[1]);
+	if (map->pos.x >= map->width || map->pos.y >= map->height)
+		return ;
+	if (ft_aisi(split[0]))
+		map->map[map->pos.x][map->pos.y] = ft_atoi(split[0]);
+	if (ft_aish(split[1]))
+		map->color[map->pos.x][map->pos.y] = ft_htoi(split[1]);
+	else
+		map->color[map->pos.x][map->pos.y] = DEFAULT_COLOR;
 }
 
-static void	ft_parse_line(int fd, t_map *map, char *line, int y)
+static void	ft_parse_line(int fd, t_map *map, char *line)
 {
-	char		**pairs;
-	int			x;
-	t_point2d	pos;
+	char	**pairs;
 
 	pairs = ft_split(line, ' ');
 	free(line);
@@ -45,12 +48,11 @@ static void	ft_parse_line(int fd, t_map *map, char *line, int y)
 		close(fd);
 		ft_error("Failed to split line");
 	}
-	x = 0;
-	while (pairs[x])
+	map->pos.x = 0;
+	while (pairs[map->pos.x])
 	{
-		ft_set_point2d(&pos, x, y);
-		parse_pair(fd, map, pairs, &pos);
-		x++;
+		parse_pair(fd, map, pairs);
+		map->pos.x++;
 	}
 	free(pairs);
 }
@@ -60,7 +62,6 @@ t_map	*ft_parse_map(char *file_name)
 	t_map	*map;
 	int		fd;
 	char	*line;
-	int		y;
 
 	map = ft_malloc_map(file_name);
 	fd = open(file_name, O_RDONLY);
@@ -70,12 +71,12 @@ t_map	*ft_parse_map(char *file_name)
 		ft_error("Failed to open file");
 	}
 	line = get_next_line(fd);
-	y = 0;
+	map->pos.y = 0;
 	while (line)
 	{
-		ft_parse_line(fd, map, line, y);
+		ft_parse_line(fd, map, line);
 		line = get_next_line(fd);
-		y++;
+		map->pos.y++;
 	}
 	return (close(fd), map);
 }
