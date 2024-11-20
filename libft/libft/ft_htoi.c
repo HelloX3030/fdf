@@ -6,15 +6,15 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 13:37:30 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/20 13:42:35 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/20 16:46:56 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_htoi(const char *str)
+unsigned int	ft_htoi(char *str)
 {
-	int	num;
+	unsigned int	num;
 
 	num = 0;
 	while (*str == ' ' || (*str >= 9 && *str <= 13))

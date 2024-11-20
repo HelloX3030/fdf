@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:51:55 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/20 16:32:59 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/20 17:14:18 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ static void	parse_pair(int fd, t_map *map, char **pairs)
 	}
 	if (map->pos.x >= map->width || map->pos.y >= map->height)
 		return ;
-	if (ft_aisi(split[0]))
-		map->map[map->pos.x][map->pos.y] = ft_atoi(split[0]);
+	map->map[map->pos.x][map->pos.y] = ft_atoi(split[0]);
 	if (ft_aish(split[1]))
 		map->color[map->pos.x][map->pos.y] = ft_htoi(split[1]);
 	else

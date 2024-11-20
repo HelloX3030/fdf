@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:17:28 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/20 14:46:27 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/20 17:13:57 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	print_heigth_map(t_map *map)
 	{
 		x = -1;
 		while (++x < map->width)
-			ft_printf("%d ", map->map[y][x]);
+			ft_printf("%d ", map->map[x][y]);
 		write(1, "\n", 1);
 		if (y < map->height - 1)
 			write(1, "\t\t", 2);
@@ -41,7 +41,7 @@ static void	print_color_map(t_map *map)
 	{
 		x = -1;
 		while (++x < map->width)
-			ft_printf("%d ", map->color[y][x]);
+			ft_printf("%u ", map->color[x][y]);
 		write(1, "\n", 1);
 		if (y < map->height - 1)
 			write(1, "\t\t", 2);

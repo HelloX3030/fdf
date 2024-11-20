@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 11:25:04 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/20 16:23:45 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/20 16:46:51 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_list				*ft_lstnew(void *content);
 // custom functions
 bool				ft_aisi(char *str);
 bool				ft_aish(char *str);
-int					ft_htoi(const char *str);
+unsigned int		ft_htoi(char *str);
 bool				ft_in_charset(char c, char *set);
 void				ft_free_strs(char **strs);
 void				ft_print_strs(char **str, int insertion);
