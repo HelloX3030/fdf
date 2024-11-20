@@ -6,32 +6,53 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:51:55 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/19 16:08:29 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/20 14:02:22 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	free_helper(t_map *map, char *line, int fd)
+static void	parse_pair(int fd, t_map *map, char **pairs, t_point2d *pos)
 {
-	free(line);
-	ft_free_map(map);
-	close(fd);
+	char	**split;
+
+	split = ft_split(pairs[pos->x], ',');
+	free(pairs[pos->x]);
+	if (!split)
+	{
+		close(fd);
+		ft_free_map(map);
+		while (pairs[++pos->x])
+			free(pairs[pos->x]);
+		free(pairs);
+	}
+	map->map[pos->x][pos->y] = ft_atoi(split[0]);
+	if (split[1])
+		map->color[pos->x][pos->y] = ft_htoi(split[1]);
 }
 
 static void	ft_parse_line(int fd, t_map *map, char *line, int y)
 {
-	char	**split;
-	int		x;
+	char		**pairs;
+	int			x;
+	t_point2d	pos;
 
-	split = ft_split(line, ' ');
-	if (!split)
+	pairs = ft_split(line, ' ');
+	free(line);
+	if (!pairs)
 	{
-		free_helper(map, line, fd);
+		ft_free_map(map);
+		close(fd);
 		ft_error("Failed to split line");
 	}
 	x = 0;
-	ft_free_strs(split);
+	while (pairs[x])
+	{
+		ft_set_point2d(&pos, x, y);
+		parse_pair(fd, map, pairs, &pos);
+		x++;
+	}
+	free(pairs);
 }
 
 t_map	*ft_parse_map(char *file_name)
@@ -53,7 +74,6 @@ t_map	*ft_parse_map(char *file_name)
 	while (line)
 	{
 		ft_parse_line(fd, map, line, y);
-		free(line);
 		line = get_next_line(fd);
 		y++;
 	}

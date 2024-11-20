@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_point.c                                     :+:      :+:    :+:   */
+/*   ft_put_pixel_save.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 12:12:57 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/20 13:49:02 by lseeger          ###   ########.fr       */
+/*   Created: 2024/11/20 13:53:36 by lseeger           #+#    #+#             */
+/*   Updated: 2024/11/20 13:58:41 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
-void	ft_set_point2d(t_point2d *point, int x, int y)
+bool	ft_put_pixel_save(mlx_image_t *img, t_point2d *point, uint32_t color)
 {
-	point->x = x;
-	point->y = y;
-}
-
-void	ft_set_point3d(t_point3d *point, int x, int y, int z)
-{
-	point->x = x;
-	point->y = y;
-	point->z = z;
+	if (point->x < 0 || (uint32_t)point->x >= img->width || point->y < 0
+		|| (uint32_t)point->y >= img->height)
+		return (false);
+	mlx_put_pixel(img, point->x, point->y, color);
+	return (true);
 }

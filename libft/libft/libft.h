@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 11:25:04 by lseeger           #+#    #+#             */
-/*   Updated: 2024/10/14 17:49:54 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/20 14:04:55 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+int					ft_htoi(const char *str);
 int					ft_isprint(int c);
 char				*ft_itoa(int n);
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));

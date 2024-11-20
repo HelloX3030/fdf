@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:48:51 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/19 16:03:47 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/20 13:59:50 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,27 @@
 # define COLOR_DARK_GRAY 0xA9A9A9FF
 
 // base structs
-typedef struct s_point
+typedef struct s_point2d
+{
+	int		x;
+	int		y;
+}			t_point2d;
+void		ft_set_point2d(t_point2d *point, int x, int y);
+
+typedef struct s_point3d
 {
 	int		x;
 	int		y;
 	int		z;
-}			t_point;
-void		ft_set_point(t_point *point, int x, int y, int z);
+}			t_point3d;
+void		ft_set_point3d(t_point3d *point, int x, int y, int z);
 
 typedef struct s_map
 {
 	int		width;
 	int		height;
 	int		**map;
+	int		**color;
 }			t_map;
 
 // util functions
@@ -75,7 +83,9 @@ void		ft_error(char *msg);
 // graphic base functions
 int			ft_get_isometric_x(int x, int y);
 int			ft_get_isometric_y(int x, int y, int z);
-void		ft_draw_line(mlx_image_t *img, t_point *start, t_point *end,
+bool		ft_put_pixel_save(mlx_image_t *img, t_point2d *point,
+				uint32_t color);
+void		ft_draw_line(mlx_image_t *img, t_point2d *start, t_point2d *end,
 				uint32_t color);
 void		ft_draw_map(t_map *map, mlx_image_t *img, uint32_t color);
 mlx_image_t	*ft_update_img(mlx_t *mlx, mlx_image_t *img);
@@ -83,7 +93,7 @@ mlx_image_t	*ft_update_img(mlx_t *mlx, mlx_image_t *img);
 // map functions
 t_map		*ft_parse_map(char *file_name);
 void		ft_free_map(t_map *map);
-void		ft_connect_tiles(t_point *start, t_point *end, mlx_image_t *img,
+void		ft_connect_tiles(t_point3d *start, t_point3d *end, mlx_image_t *img,
 				uint32_t color);
 
 #endif
