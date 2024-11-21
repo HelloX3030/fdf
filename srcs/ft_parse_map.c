@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:51:55 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/20 17:14:18 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/21 15:21:10 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,16 @@ static void	parse_pair(int fd, t_map *map, char **pairs)
 		free(pairs);
 	}
 	if (map->pos.x >= map->width || map->pos.y >= map->height)
+	{
+		ft_free_strs(split);
 		return ;
+	}
 	map->map[map->pos.x][map->pos.y] = ft_atoi(split[0]);
 	if (ft_aish(split[1]))
 		map->color[map->pos.x][map->pos.y] = ft_htoi(split[1]);
 	else
 		map->color[map->pos.x][map->pos.y] = DEFAULT_COLOR;
+	ft_free_strs(split);
 }
 
 static void	ft_parse_line(int fd, t_map *map, char *line)
