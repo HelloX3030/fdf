@@ -1,3 +1,6 @@
 {
-	"cmake.sourceDirectory": "/Users/lseeger/C Projects/fdf/lib/MLX42"
+	"cmake.sourceDirectory": "/Users/lseeger/C Projects/fdf/lib/MLX42",
+	"files.associations": {
+		"locale": "c"
+	}
 }

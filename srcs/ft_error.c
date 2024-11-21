@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:21:40 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/14 14:14:37 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/21 14:56:58 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ void	ft_error(char *msg)
 	{
 		ft_printf("ft_error called without error...\n");
 	}
+	system("leaks fdf");
 	exit(EXIT_FAILURE);
 }

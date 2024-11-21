@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:48:51 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/20 16:17:19 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/21 12:41:50 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define COLOR_LIGHT_GRAY 0xD3D3D3FFU
 # define COLOR_DARK_GRAY 0xA9A9A9FFU
 
-# define DEFAULT_COLOR COLOR_WHITE
+# define DEFAULT_COLOR 0
 
 // base structs
 typedef struct s_point2d
@@ -77,12 +77,13 @@ int					ft_get_line_count(int fd);
 // map functions
 t_map				*ft_malloc_map(char *file_name);
 void				ft_init_map_size(char *file_name, t_map *map);
-void				ft_print_map(t_map *map);
+void				ft_print_map(t_map *map, bool print_map, bool print_color);
 t_map				*ft_parse_map(char *file_name);
 void				ft_free_map(t_map *map);
 
 // base functions
 void				ft_error(char *msg);
+t_map				*ft_parse_args(int argc, char **argv);
 
 // graphic base functions
 int					ft_get_isometric_x(int x, int y);

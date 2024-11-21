@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:17:28 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/20 17:13:57 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/21 12:35:50 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,13 @@ static void	print_color_map(t_map *map)
 	}
 }
 
-void	ft_print_map(t_map *map)
+void	ft_print_map(t_map *map, bool print_map, bool print_color)
 {
 	ft_printf("print_map\n");
 	ft_printf("\twidth: %d\n", map->width);
 	ft_printf("\theight: %d\n", map->height);
-	print_heigth_map(map);
-	print_color_map(map);
+	if (print_map)
+		print_heigth_map(map);
+	if (print_color)
+		print_color_map(map);
 }

@@ -40,11 +40,13 @@ $(OBJ_DIR):
 
 # Clean
 clean:
-	rm -rf $(OBJ_DIR)
+	@echo "Cleaning libft"
 	rm -rf $(OBJ_DIR)
 
 # Fclean
-fclean: clean
+fclean:
+	@echo "Fcleaning libft"
+	rm -rf $(OBJ_DIR)
 	rm -f $(NAME)
 
 # Re

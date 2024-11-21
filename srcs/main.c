@@ -6,20 +6,21 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:21:44 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/20 15:07:41 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/21 14:58:01 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 	t_map		*map;
+	int			*x;
 
-	map = ft_parse_map("maps/42.fdf");
-	ft_print_map(map);
+	map = ft_parse_args(argc, argv);
+	ft_print_map(map, true, true);
 	mlx_set_setting(MLX_MAXIMIZED, true);
 	mlx = mlx_init(WIDTH, HEIGHT, "fdf", true);
 	if (!mlx)
@@ -30,5 +31,8 @@ int	main(void)
 	mlx_delete_image(mlx, img);
 	ft_free_map(map);
 	mlx_terminate(mlx);
+	x = malloc(sizeof(int));
+	*x = 42;
+	system("leaks fdf");
 	return (0);
 }
