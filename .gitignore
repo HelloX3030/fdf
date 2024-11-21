@@ -6,6 +6,8 @@ fdf
 # *.md
 maps
 obj
+*.pdf
+.vscode
 
 # Prerequisites
 *.d

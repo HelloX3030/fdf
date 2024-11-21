@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:21:44 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/21 15:48:57 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/21 15:53:16 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 	// mlx_t		*mlx;
 	// mlx_image_t	*img;
 	map = ft_parse_args(argc, argv);
-	ft_print_map(map, true, true);
+	ft_print_map(map, false, true);
 	// mlx_set_setting(MLX_MAXIMIZED, true);
 	// mlx = mlx_init(WIDTH, HEIGHT, "fdf", true);
 	// if (!mlx)
