@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:11:13 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/20 16:01:44 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/22 15:32:54 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,37 +33,27 @@ static int	ft_get_map_width(int fd)
 	return (free(first_line), count);
 }
 
-static void	get_size_failed(t_map *map)
-{
-	free(map);
-	ft_error("get size failed");
-}
-
-void	ft_init_map_size(char *file_name, t_map *map)
+int	ft_init_map_size(t_map *map, char *file_name)
 {
 	int		fd;
 	char	*buffer;
 
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
-	{
-		free(map);
-		ft_error("Failed to open file");
-	}
+		return (-1);
 	map->height = ft_get_line_count(fd);
 	close(fd);
 	if (map->height < 0)
-		get_size_failed(map);
+		return (-1);
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
-	{
-		free(map);
-		ft_error("Failed to open file");
-	}
+		return (-1);
 	map->width = ft_get_map_width(fd);
 	buffer = get_buffer(fd);
 	buffer[0] = 0;
 	close(fd);
 	if (map->width < 0)
-		get_size_failed(map);
+		return (-1);
+	else
+		return (0);
 }

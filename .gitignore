@@ -1,10 +1,8 @@
 .DS_Store
 *.txt
 fdf
-# *.pdf
 *.a
 # *.md
-maps
 obj
 *.pdf
 .vscode

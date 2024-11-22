@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:48:51 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/21 12:41:50 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/22 15:22:29 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,31 @@ typedef struct s_map
 	t_point2d		pos;
 }					t_map;
 
+typedef struct s_fdf
+{
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	int				width;
+	int				height;
+	t_map			map;
+}					t_fdf;
+void				ft_init_fdf(t_fdf *fdf, char *file_path);
+void				ft_free_fdf_content(t_fdf *fdf);
+void				ft_update_fdf_img(t_fdf *fdf);
+
 // util functions
 int					ft_get_line_count(int fd);
 
 // map functions
-t_map				*ft_malloc_map(char *file_name);
-void				ft_init_map_size(char *file_name, t_map *map);
+int					ft_init_map(t_map *map, char *file_path);
+int					ft_init_map_size(t_map *map, char *file_path);
 void				ft_print_map(t_map *map, bool print_map, bool print_color);
-t_map				*ft_parse_map(char *file_name);
-void				ft_free_map(t_map *map);
+int					ft_parse_map(t_map *map, char *file_path);
+void				ft_free_map_content(t_map *map);
 
 // base functions
 void				ft_error(char *msg);
-t_map				*ft_parse_args(int argc, char **argv);
+char				*ft_get_file_path(int argc, char **argv);
 
 // graphic base functions
 int					ft_get_isometric_x(int x, int y);
@@ -93,9 +105,12 @@ bool				ft_put_pixel_save(mlx_image_t *img, t_point2d *point,
 void				ft_draw_line(mlx_image_t *img, t_point2d *start,
 						t_point2d *end, uint32_t color);
 void				ft_draw_map(t_map *map, mlx_image_t *img, uint32_t color);
-mlx_image_t			*ft_update_img(mlx_t *mlx, mlx_image_t *img);
 
 void				ft_connect_tiles(t_point3d *start, t_point3d *end,
 						mlx_image_t *img, uint32_t color);
+
+// hooks
+void				ft_hooks_setup(t_fdf *fdf);
+void				ft_on_resize(int32_t width, int32_t height, void *param);
 
 #endif

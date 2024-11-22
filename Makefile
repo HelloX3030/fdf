@@ -9,7 +9,7 @@ H_FILES := include/fdf.h
 # .c files
 SRC_DIR := srcs
 vpath %c $(SRC_DIR)
-SRC_FILES := ft_connect_tiles.c ft_draw_line.c ft_draw_map.c ft_error.c ft_free_map.c ft_get_isometric_x.c ft_get_isometric_y.c ft_get_line_count.c ft_init_map_size.c ft_malloc_map.c ft_parse_map.c ft_print_map.c ft_put_pixel_save.c ft_set_point.c ft_update_img.c main.c ft_parse_args.c
+SRC_FILES := ft_connect_tiles.c ft_draw_line.c ft_draw_map.c ft_error.c ft_free_fdf_content.c ft_free_map_content.c ft_get_file_path.c ft_get_isometric_x.c ft_get_isometric_y.c ft_get_line_count.c ft_hooks_setup.c ft_init_fdf.c ft_init_map.c ft_init_map_size.c ft_on_resize.c ft_parse_map.c ft_print_map.c ft_put_pixel_save.c ft_set_point.c ft_update_fdf_img.c main.c
 
 # .o files 
 OBJ_DIR := obj
