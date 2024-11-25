@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_on_resize.c                                     :+:      :+:    :+:   */
+/*   isometric_projection.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 13:40:24 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/25 15:01:31 by lseeger          ###   ########.fr       */
+/*   Created: 2024/11/13 11:34:24 by lseeger           #+#    #+#             */
+/*   Updated: 2024/11/25 14:55:20 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "fdf.h"
 
-void	ft_on_resize(int32_t width, int32_t height, void *param)
+int	ft_get_isometric_x(t_point3d *offset, t_point3d *viewport, t_point3d *point,
+		int tile_size)
 {
-	t_fdf	*fdf;
+	(void)viewport;
+	return ((sqrt(3) / 2) * (point->x - point->z) * tile_size - offset->x);
+}
 
-	fdf = (t_fdf *)param;
-	fdf->width = width;
-	fdf->height = height;
-	ft_update_fdf_img(fdf);
-	fdf->update = true;
+int	ft_get_isometric_y(t_point3d *offset, t_point3d *viewport, t_point3d *point,
+		int tile_size)
+{
+	(void)viewport;
+	return (((point->x + point->z) / 2 - point->y) * tile_size - offset->y);
 }

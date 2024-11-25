@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_isometric_y.c                               :+:      :+:    :+:   */
+/*   ft_point_in_area.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 11:34:50 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/14 12:56:46 by lseeger          ###   ########.fr       */
+/*   Created: 2024/11/25 13:46:14 by lseeger           #+#    #+#             */
+/*   Updated: 2024/11/25 13:46:47 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_get_isometric_y(int x, int y, int z)
+#include "../include/fdf.h"
+
+bool	ft_point_in_area(int width, int height, t_point2d *point)
 {
-	return ((x + z) / 2 - y);
+	if (point->x < 0 || point->x >= width)
+		return (false);
+	if (point->y < 0 || point->y >= height)
+		return (false);
+	return (true);
 }

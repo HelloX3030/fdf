@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_on_resize.c                                     :+:      :+:    :+:   */
+/*   ft_clear_img.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 13:40:24 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/25 15:01:31 by lseeger          ###   ########.fr       */
+/*   Created: 2024/11/25 13:28:16 by lseeger           #+#    #+#             */
+/*   Updated: 2024/11/25 13:32:32 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	ft_on_resize(int32_t width, int32_t height, void *param)
+void	ft_clear_img(mlx_image_t *img, unsigned int color)
 {
-	t_fdf	*fdf;
+	unsigned int	x;
+	unsigned int	y;
 
-	fdf = (t_fdf *)param;
-	fdf->width = width;
-	fdf->height = height;
-	ft_update_fdf_img(fdf);
-	fdf->update = true;
+	y = 0;
+	while (y < img->height)
+	{
+		x = 0;
+		while (x < img->width)
+		{
+			mlx_put_pixel(img, x, y, color);
+			x++;
+		}
+		y++;
+	}
 }

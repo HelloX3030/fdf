@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_on_resize.c                                     :+:      :+:    :+:   */
+/*   ft_get_point.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 13:40:24 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/25 15:01:31 by lseeger          ###   ########.fr       */
+/*   Created: 2024/11/25 13:02:25 by lseeger           #+#    #+#             */
+/*   Updated: 2024/11/25 15:17:22 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	ft_on_resize(int32_t width, int32_t height, void *param)
+t_point3d	ft_get_point(t_map *map, t_point2d *point)
 {
-	t_fdf	*fdf;
+	t_point3d	p;
 
-	fdf = (t_fdf *)param;
-	fdf->width = width;
-	fdf->height = height;
-	ft_update_fdf_img(fdf);
-	fdf->update = true;
+	ft_set_point3d(&p, point->x, point->y, map->map[point->x][point->y]);
+	return (p);
 }

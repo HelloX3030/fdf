@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:41:21 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/22 14:44:56 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/25 12:20:51 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,5 @@
 void	ft_hooks_setup(t_fdf *fdf)
 {
 	mlx_resize_hook(fdf->mlx, ft_on_resize, fdf);
+	mlx_loop_hook(fdf->mlx, ft_loop, fdf);
 }

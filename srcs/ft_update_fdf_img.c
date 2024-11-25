@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:41:10 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/22 15:37:49 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/25 13:54:33 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ void	ft_update_fdf_img(t_fdf *fdf)
 		ft_free_fdf_content(fdf);
 		ft_error("Failed to update fdf img!");
 	}
+	fdf->update = true;
 }

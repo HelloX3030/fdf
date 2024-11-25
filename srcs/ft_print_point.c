@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_isometric_x.c                               :+:      :+:    :+:   */
+/*   ft_print_point.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 11:34:24 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/14 13:05:32 by lseeger          ###   ########.fr       */
+/*   Created: 2024/11/25 15:03:21 by lseeger           #+#    #+#             */
+/*   Updated: 2024/11/25 15:05:39 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
-int	ft_get_isometric_x(int x, int z)
+void	ft_print_point2d(char *name, t_point2d *point)
 {
-	return ((sqrt(3) / 2) * (x - z));
+	ft_printf("%s(%i|%i)\n", name, point->x, point->y);
+}
+
+void	ft_print_point3d(char *name, t_point3d *point)
+{
+	ft_printf("%s(%i|%i|%i)\n", name, point->x, point->y, point->z);
 }

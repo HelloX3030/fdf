@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:54:27 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/22 16:13:12 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/25 14:54:09 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ void	ft_init_fdf(t_fdf *fdf, char *file_path)
 	}
 	fdf->img = NULL;
 	ft_update_fdf_img(fdf);
+	ft_reset_fdf_view(fdf);
 }
