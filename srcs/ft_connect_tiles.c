@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:20:50 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/25 15:18:20 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/26 12:57:34 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ void	ft_connect_tiles(t_fdf *fdf, t_point2d *start, t_point2d *end)
 
 	start_pos = ft_get_point(&fdf->map, start);
 	end_pos = ft_get_point(&fdf->map, end);
-	start_pxl.x = fdf->projection.get_x(&fdf->viewpoint, &fdf->offset,
+	start_pxl.x = fdf->projection.get_x(&fdf->offset, &fdf->viewpoint,
 			&start_pos, fdf->tile_size);
-	start_pxl.y = fdf->projection.get_y(&fdf->viewpoint, &fdf->offset,
+	start_pxl.y = fdf->projection.get_y(&fdf->offset, &fdf->viewpoint,
 			&start_pos, fdf->tile_size);
 	end_pxl.x = fdf->projection.get_x(&fdf->offset, &fdf->viewpoint, &end_pos,
 			fdf->tile_size);
 	end_pxl.y = fdf->projection.get_y(&fdf->offset, &fdf->viewpoint, &end_pos,
 			fdf->tile_size);
-	ft_draw_line(fdf->img, &start_pxl, &end_pxl,
-		fdf->map.color[start->y][start->x]);
-	print_action(&start_pos, &end_pos, &start_pxl, &end_pxl);
+	if (ft_draw_line(fdf->img, &start_pxl, &end_pxl,
+			fdf->map.color[start->x][start->y]))
+		print_action(&start_pos, &end_pos, &start_pxl, &end_pxl);
 }

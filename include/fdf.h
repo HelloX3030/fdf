@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:48:51 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/25 15:05:02 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/26 12:54:28 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ bool				ft_put_pixel_save(mlx_image_t *img, t_point2d *point,
 						uint32_t color);
 void				ft_clear_img(mlx_image_t *img, unsigned int color);
 
-void				ft_draw_line(mlx_image_t *img, t_point2d *start,
+bool				ft_draw_line(mlx_image_t *img, t_point2d *start,
 						t_point2d *end, uint32_t color);
 void				ft_connect_tiles(t_fdf *fdf, t_point2d *start,
 						t_point2d *end);

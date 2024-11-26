@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:29:04 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/25 13:47:47 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/26 12:54:04 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,12 @@ static void	ft_draw(mlx_image_t *img, t_point2d *start, t_point2d *end,
 	}
 }
 
-void	ft_draw_line(mlx_image_t *img, t_point2d *start, t_point2d *end,
+bool	ft_draw_line(mlx_image_t *img, t_point2d *start, t_point2d *end,
 		uint32_t color)
 {
 	if (!ft_point_in_area(img->width, img->height, start)
 		|| !ft_point_in_area(img->width, img->height, end))
-		return ;
+		return (false);
 	ft_draw(img, start, end, color);
+	return (true);
 }
