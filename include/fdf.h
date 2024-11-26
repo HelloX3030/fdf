@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:48:51 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/26 12:54:28 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/26 13:28:36 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,21 @@ typedef struct s_fdf
 	t_point3d		offset;
 	t_point3d		viewpoint;
 	int				tile_size;
+	float			zoom;
 }					t_fdf;
 void				ft_init_fdf(t_fdf *fdf, char *file_path);
 void				ft_free_fdf_content(t_fdf *fdf);
 void				ft_update_fdf_img(t_fdf *fdf);
 void				ft_reset_fdf_view(t_fdf *fdf);
+
+// zoom functions
+# define MIN_ZOOM 0.5
+# define MAX_ZOOM 3
+# define ZOOM_STEP 0.07
+
+void				ft_update_zoom_factor(t_fdf *fdf);
+void				ft_zoom_in(t_fdf *fdf);
+void				ft_zoom_out(t_fdf *fdf);
 
 // util functions
 int					ft_get_line_count(int fd);

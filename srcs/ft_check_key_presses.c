@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:01:49 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/25 15:21:43 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/26 13:22:51 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ static void	check_projection_change(t_fdf *fdf)
 
 static void	check_tile_size_change(t_fdf *fdf)
 {
-	(void)fdf;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_F))
+		ft_zoom_out(fdf);
+	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_C))
+		ft_zoom_in(fdf);
 }
 
 static void	check_viewpoint_change(t_fdf *fdf)
