@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:48:51 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/26 13:28:36 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/26 16:36:39 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@
 # define COLOR_LIGHT_GRAY 0xD3D3D3FFU
 # define COLOR_DARK_GRAY 0xA9A9A9FFU
 
-# define DEFAULT_COLOR 0
-# define BACKGROUND_COLOR 0x000000FFU
+# define DEFAULT_COLOR COLOR_WHITE
+# define BACKGROUND_COLOR COLOR_GRAY
 
 // base structs
 typedef struct s_point2d
@@ -66,6 +66,15 @@ typedef struct s_point3d
 void				ft_set_point3d(t_point3d *point, int x, int y, int z);
 void				ft_print_point3d(char *name, t_point3d *point);
 
+typedef struct s_point3d_d
+{
+	double			x;
+	double			y;
+	double			z;
+}					t_point3d_d;
+void				ft_set_point3d_d(t_point3d_d *point, double x, double y,
+						double z);
+
 // s_projection
 // o: offset
 // v: viewpoint
@@ -73,8 +82,8 @@ void				ft_print_point3d(char *name, t_point3d *point);
 // t: tile size
 typedef struct s_projection
 {
-	int				(*get_x)(t_point3d *o, t_point3d *v, t_point3d *p, int t);
-	int				(*get_y)(t_point3d *o, t_point3d *v, t_point3d *p, int t);
+	int				(*get_x)(t_point3d *o, t_point3d_d *v, t_point3d *p);
+	int				(*get_y)(t_point3d *o, t_point3d_d *v, t_point3d *p);
 }					t_projection;
 
 typedef struct s_map
@@ -96,8 +105,9 @@ typedef struct s_fdf
 	bool			update;
 	t_projection	projection;
 	t_point3d		offset;
-	t_point3d		viewpoint;
+	t_point3d_d		viewpoint;
 	int				tile_size;
+	float			y_scale;
 	float			zoom;
 }					t_fdf;
 void				ft_init_fdf(t_fdf *fdf, char *file_path);
@@ -105,7 +115,7 @@ void				ft_free_fdf_content(t_fdf *fdf);
 void				ft_update_fdf_img(t_fdf *fdf);
 void				ft_reset_fdf_view(t_fdf *fdf);
 
-// zoom functions
+// zoom
 # define MIN_ZOOM 0.5
 # define MAX_ZOOM 3
 # define ZOOM_STEP 0.07
@@ -113,6 +123,23 @@ void				ft_reset_fdf_view(t_fdf *fdf);
 void				ft_update_zoom_factor(t_fdf *fdf);
 void				ft_zoom_in(t_fdf *fdf);
 void				ft_zoom_out(t_fdf *fdf);
+
+// y-scale
+# define MIN_Y_SCALE 0.05
+# define MAX_Y_SCALE 3
+# define SCALE_STEP 0.01
+
+void				ft_update_y_scale(t_fdf *fdf);
+void				ft_increase_y_scale(t_fdf *fdf);
+void				ft_decrease_y_scale(t_fdf *fdf);
+
+# define MAX_RADIANT M_PI
+# define MIN_RADIANT -M_PI
+# define DEGREE_STEP 0.1
+
+void				ft_update_degree(t_fdf *fdf);
+void				ft_rotate_counter(t_fdf *fdf);
+void				ft_rotate_clock(t_fdf *fdf);
 
 // util functions
 int					ft_get_line_count(int fd);
@@ -124,7 +151,7 @@ void				ft_print_map(t_map *map, bool print_map, bool print_color);
 int					ft_parse_map(t_map *map, char *file_path);
 void				ft_free_map_content(t_map *map);
 void				ft_draw_fdf(t_fdf *fdf);
-t_point3d			ft_get_point(t_map *map, t_point2d *point);
+t_point3d			ft_get_point(t_fdf *fdf, t_point2d *point);
 
 // base functions
 void				ft_error(char *msg);
@@ -141,10 +168,10 @@ void				ft_connect_tiles(t_fdf *fdf, t_point2d *start,
 						t_point2d *end);
 
 // isometric functions
-int					ft_get_isometric_x(t_point3d *offset, t_point3d *viewport,
-						t_point3d *point, int tile_size);
-int					ft_get_isometric_y(t_point3d *offset, t_point3d *viewport,
-						t_point3d *point, int tile_size);
+int					ft_get_isometric_x(t_point3d *offset, t_point3d_d *viewport,
+						t_point3d *point);
+int					ft_get_isometric_y(t_point3d *offset, t_point3d_d *viewport,
+						t_point3d *point);
 
 // hooks
 void				ft_hooks_setup(t_fdf *fdf);

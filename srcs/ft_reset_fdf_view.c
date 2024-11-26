@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:53:02 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/26 13:41:20 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/26 17:09:37 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	ft_reset_fdf_view(t_fdf *fdf)
 	fdf->offset.x = -fdf->width / 2;
 	fdf->offset.y = -fdf->height / 2;
 	fdf->offset.z = 0;
-	ft_set_point3d(&fdf->viewpoint, 0, 0, 0);
+	ft_set_point3d_d(&fdf->viewpoint, M_PI / 2, 0, 0);
 	fdf->zoom = MIN_ZOOM;
 	ft_update_zoom_factor(fdf);
+	fdf->y_scale = MIN_Y_SCALE;
 }
