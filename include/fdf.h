@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:48:51 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/26 16:36:39 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/27 15:55:38 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ typedef struct s_point2d
 void				ft_set_point2d(t_point2d *point, int x, int y);
 bool				ft_point_in_area(int width, int height, t_point2d *point);
 void				ft_print_point2d(char *name, t_point2d *point);
+void				ft_scale_point2d(t_point2d *point, float scale);
+int					ft_magnitude_point2d(t_point2d *point);
+void				ft_add_point2d(t_point2d *point, t_point2d *add);
+void				ft_subtract_point2d(t_point2d *point, t_point2d *add);
 
 typedef struct s_point3d
 {
@@ -65,6 +69,9 @@ typedef struct s_point3d
 }					t_point3d;
 void				ft_set_point3d(t_point3d *point, int x, int y, int z);
 void				ft_print_point3d(char *name, t_point3d *point);
+void				ft_add_point3d(t_point3d *point, t_point3d *add);
+void				ft_subtract_point3d(t_point3d *point, t_point3d *sub);
+void				ft_scale_point3d(t_point3d *point, float scale);
 
 typedef struct s_point3d_d
 {
@@ -74,17 +81,8 @@ typedef struct s_point3d_d
 }					t_point3d_d;
 void				ft_set_point3d_d(t_point3d_d *point, double x, double y,
 						double z);
-
-// s_projection
-// o: offset
-// v: viewpoint
-// p: point
-// t: tile size
-typedef struct s_projection
-{
-	int				(*get_x)(t_point3d *o, t_point3d_d *v, t_point3d *p);
-	int				(*get_y)(t_point3d *o, t_point3d_d *v, t_point3d *p);
-}					t_projection;
+void				ft_rotate_point(t_point3d *point, t_point3d_d *viewport);
+void				ft_normalize_point2d(t_point2d *point);
 
 typedef struct s_map
 {
@@ -103,8 +101,9 @@ typedef struct s_fdf
 	t_map			map;
 	mlx_image_t		*img;
 	bool			update;
-	t_projection	projection;
-	t_point3d		offset;
+	void			(*projection_func)(t_point3d *point, t_point2d *pixel_pos);
+
+	t_point2d		offset;
 	t_point3d_d		viewpoint;
 	int				tile_size;
 	float			y_scale;
@@ -162,21 +161,24 @@ bool				ft_put_pixel_save(mlx_image_t *img, t_point2d *point,
 						uint32_t color);
 void				ft_clear_img(mlx_image_t *img, unsigned int color);
 
-bool				ft_draw_line(mlx_image_t *img, t_point2d *start,
+void				ft_draw_line(mlx_image_t *img, t_point2d *start,
 						t_point2d *end, uint32_t color);
 void				ft_connect_tiles(t_fdf *fdf, t_point2d *start,
 						t_point2d *end);
 
-// isometric functions
-int					ft_get_isometric_x(t_point3d *offset, t_point3d_d *viewport,
-						t_point3d *point);
-int					ft_get_isometric_y(t_point3d *offset, t_point3d_d *viewport,
-						t_point3d *point);
+// projection functions
+void				ft_get_isometric(t_point3d *point, t_point2d *pixel_pos);
 
 // hooks
 void				ft_hooks_setup(t_fdf *fdf);
 void				ft_on_resize(int32_t width, int32_t height, void *param);
 void				ft_loop(void *param);
 void				ft_check_key_presses(t_fdf *fdf);
+
+// offset functions
+# define OFFSET_STEP 10
+
+int					ft_get_screen_middle_offset_x(t_fdf *fdf);
+int					ft_get_screen_middle_offset_y(t_fdf *fdf);
 
 #endif

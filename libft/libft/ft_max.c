@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_reset_fdf_view.c                                :+:      :+:    :+:   */
+/*   ft_max.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 13:53:02 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/27 15:52:25 by lseeger          ###   ########.fr       */
+/*   Created: 2024/11/27 14:42:25 by lseeger           #+#    #+#             */
+/*   Updated: 2024/11/27 14:57:19 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "libft.h"
 
-void	ft_reset_fdf_view(t_fdf *fdf)
+int	ft_max(int a, int b)
 {
-	fdf->update = true;
-	fdf->projection_func = ft_get_isometric;
-	fdf->tile_size = TILE_SIZE;
-	fdf->offset.x = ft_get_screen_middle_offset_x(fdf);
-	fdf->offset.y = ft_get_screen_middle_offset_y(fdf);
-	ft_set_point3d_d(&fdf->viewpoint, 0, 0, 0);
-	fdf->zoom = MIN_ZOOM;
-	ft_update_zoom_factor(fdf);
-	fdf->y_scale = MIN_Y_SCALE;
+	if (a >= b)
+		return (a);
+	else
+		return (b);
+}
+
+int	ft_abs_max(int a, int b)
+{
+	if (ft_abs(a) >= ft_abs(b))
+		return (a);
+	else
+		return (b);
 }

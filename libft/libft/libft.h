@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 11:25:04 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/26 16:25:22 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/27 14:57:33 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ bool				ft_in_charset(char c, char *set);
 void				ft_free_strs(char **strs);
 void				ft_print_strs(char **str, int insertion);
 void				ft_free_ints(int **ints, int width);
-double				ft_degrees_to_radians(int degrees);
+int					ft_abs(int n);
+int					ft_max(int a, int b);
+int					ft_abs_max(int a, int b);
 
 #endif

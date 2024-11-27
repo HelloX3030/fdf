@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_reset_fdf_view.c                                :+:      :+:    :+:   */
+/*   ft_subtract_point.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 13:53:02 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/27 15:52:25 by lseeger          ###   ########.fr       */
+/*   Created: 2024/11/27 14:30:27 by lseeger           #+#    #+#             */
+/*   Updated: 2024/11/27 15:19:35 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	ft_reset_fdf_view(t_fdf *fdf)
+void	ft_subtract_point2d(t_point2d *point, t_point2d *add)
 {
-	fdf->update = true;
-	fdf->projection_func = ft_get_isometric;
-	fdf->tile_size = TILE_SIZE;
-	fdf->offset.x = ft_get_screen_middle_offset_x(fdf);
-	fdf->offset.y = ft_get_screen_middle_offset_y(fdf);
-	ft_set_point3d_d(&fdf->viewpoint, 0, 0, 0);
-	fdf->zoom = MIN_ZOOM;
-	ft_update_zoom_factor(fdf);
-	fdf->y_scale = MIN_Y_SCALE;
+	point->x -= add->x;
+	point->y -= add->y;
+}
+
+void	ft_subtract_point3d(t_point3d *point, t_point3d *sub)
+{
+	point->x -= sub->x;
+	point->y -= sub->y;
+	point->z -= sub->z;
 }

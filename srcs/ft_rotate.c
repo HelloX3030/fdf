@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:17:56 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/26 17:11:39 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/27 15:54:01 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,17 @@ void	ft_update_degree(t_fdf *fdf)
 	fdf->update = true;
 }
 
+// printf("x: %f, y: %f, z: %f\n", fdf->viewpoint.x, fdf->viewpoint.y,
+// 	fdf->viewpoint.z);
+
 void	ft_rotate_counter(t_fdf *fdf)
 {
 	fdf->viewpoint.z += DEGREE_STEP;
 	ft_update_degree(fdf);
-	printf("x: %f, y: %f, z: %f\n", fdf->viewpoint.x, fdf->viewpoint.y,
-		fdf->viewpoint.z);
 }
 
 void	ft_rotate_clock(t_fdf *fdf)
 {
 	fdf->viewpoint.z -= DEGREE_STEP;
 	ft_update_degree(fdf);
-	printf("x: %f, y: %f, z: %f\n", fdf->viewpoint.x, fdf->viewpoint.y,
-		fdf->viewpoint.z);
 }

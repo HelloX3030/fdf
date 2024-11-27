@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:01:49 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/26 16:20:33 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/27 15:47:21 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,28 @@
 
 static void	check_camera_movement(t_fdf *fdf)
 {
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
-	{
-		fdf->offset.x -= 10;
-		fdf->update = true;
-	}
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_D))
-	{
-		fdf->offset.x += 10;
-		fdf->update = true;
-	}
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
-	{
-		fdf->offset.y -= 10;
-		fdf->update = true;
-	}
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
-	{
-		fdf->offset.y += 10;
-		fdf->update = true;
-	}
+	t_point2d	movement;
+	float		magnitude;
+
+	ft_set_point2d(&movement, 0, 0);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A) && !mlx_is_key_down(fdf->mlx,
+			MLX_KEY_D))
+		movement.x = -100;
+	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_D) && !mlx_is_key_down(fdf->mlx,
+			MLX_KEY_A))
+		movement.x = 100;
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W) && !mlx_is_key_down(fdf->mlx,
+			MLX_KEY_S))
+		movement.y = -100;
+	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_S) && !mlx_is_key_down(fdf->mlx,
+			MLX_KEY_W))
+		movement.y = 100;
+	magnitude = ft_magnitude_point2d(&movement);
+	if (magnitude <= 0)
+		return ;
+	ft_scale_point2d(&movement, 1 / magnitude * OFFSET_STEP);
+	ft_add_point2d(&fdf->offset, &movement);
+	fdf->update = true;
 }
 
 static void	check_projection_change(t_fdf *fdf)

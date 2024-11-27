@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:20:50 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/26 16:05:11 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/27 15:21:23 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	ft_connect_tiles(t_fdf *fdf, t_point2d *start, t_point2d *end)
 
 	start_pos = ft_get_point(fdf, start);
 	end_pos = ft_get_point(fdf, end);
-	start_pxl.x = fdf->projection.get_x(&fdf->offset, &fdf->viewpoint,
-			&start_pos);
-	start_pxl.y = fdf->projection.get_y(&fdf->offset, &fdf->viewpoint,
-			&start_pos);
-	end_pxl.x = fdf->projection.get_x(&fdf->offset, &fdf->viewpoint, &end_pos);
-	end_pxl.y = fdf->projection.get_y(&fdf->offset, &fdf->viewpoint, &end_pos);
+	ft_rotate_point(&start_pos, &fdf->viewpoint);
+	ft_rotate_point(&end_pos, &fdf->viewpoint);
+	fdf->projection_func(&start_pos, &start_pxl);
+	fdf->projection_func(&end_pos, &end_pxl);
+	ft_subtract_point2d(&start_pxl, &fdf->offset);
+	ft_subtract_point2d(&end_pxl, &fdf->offset);
 	ft_draw_line(fdf->img, &start_pxl, &end_pxl,
 		fdf->map.color[start->x][start->y]);
 }
