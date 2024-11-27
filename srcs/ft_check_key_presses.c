@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:01:49 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/27 15:47:21 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/27 16:22:44 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,30 @@ static void	check_zoom_scale_change(t_fdf *fdf)
 
 static void	check_viewpoint_change(t_fdf *fdf)
 {
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
-		ft_rotate_clock(fdf);
-	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_E))
-		ft_rotate_counter(fdf);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_X))
+	{
+		if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT_SHIFT))
+			fdf->viewpoint.x -= DEGREE_STEP;
+		else
+			fdf->viewpoint.x += DEGREE_STEP;
+		fdf->update = true;
+	}
+	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_Y))
+	{
+		if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT_SHIFT))
+			fdf->viewpoint.y -= DEGREE_STEP;
+		else
+			fdf->viewpoint.y += DEGREE_STEP;
+		fdf->update = true;
+	}
+	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_Z))
+	{
+		if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT_SHIFT))
+			fdf->viewpoint.z -= DEGREE_STEP;
+		else
+			fdf->viewpoint.z += DEGREE_STEP;
+		fdf->update = true;
+	}
 }
 
 void	ft_check_key_presses(t_fdf *fdf)
@@ -69,6 +89,10 @@ void	ft_check_key_presses(t_fdf *fdf)
 	check_projection_change(fdf);
 	check_zoom_scale_change(fdf);
 	check_viewpoint_change(fdf);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
+		ft_rotate_clock(fdf);
+	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_E))
+		ft_rotate_counter(fdf);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_R))
 		ft_reset_fdf_view(fdf);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
