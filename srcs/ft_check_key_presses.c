@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:01:49 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/27 16:22:44 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/28 13:59:45 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,6 @@ static void	check_camera_movement(t_fdf *fdf)
 	ft_scale_point2d(&movement, 1 / magnitude * OFFSET_STEP);
 	ft_add_point2d(&fdf->offset, &movement);
 	fdf->update = true;
-}
-
-static void	check_projection_change(t_fdf *fdf)
-{
-	(void)fdf;
 }
 
 static void	check_zoom_scale_change(t_fdf *fdf)
@@ -83,22 +78,18 @@ static void	check_viewpoint_change(t_fdf *fdf)
 	}
 }
 
-void	ft_check_key_presses(t_fdf *fdf)
+static void	check_bonus_rotation(t_fdf *fdf)
 {
-	check_camera_movement(fdf);
-	check_projection_change(fdf);
-	check_zoom_scale_change(fdf);
-	check_viewpoint_change(fdf);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
 		ft_rotate_clock(fdf);
 	else if (mlx_is_key_down(fdf->mlx, MLX_KEY_E))
 		ft_rotate_counter(fdf);
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_R))
-		ft_reset_fdf_view(fdf);
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
-	{
-		ft_free_fdf_content(fdf);
-		mlx_terminate(fdf->mlx);
-		exit(0);
-	}
+}
+
+void	ft_check_key_presses(t_fdf *fdf)
+{
+	check_camera_movement(fdf);
+	check_zoom_scale_change(fdf);
+	check_viewpoint_change(fdf);
+	check_bonus_rotation(fdf);
 }

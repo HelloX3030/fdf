@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:53:02 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/28 13:25:46 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/28 14:02:30 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,5 @@ void	ft_reset_fdf_view(t_fdf *fdf)
 	fdf->zoom = START_ZOOM;
 	ft_update_zoom_factor(fdf);
 	fdf->y_scale = START_Y_SCALE;
+	ft_set_isometric_projection(fdf);
 }

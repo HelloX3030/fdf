@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:48:51 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/28 13:25:35 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/28 14:04:04 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,12 +169,20 @@ void			ft_connect_tiles(t_fdf *fdf, t_point2d *start, t_point2d *end);
 
 // projection functions
 void			ft_get_isometric(t_point3d *point, t_point2d *pixel_pos);
+void			ft_get_parallel(t_point3d *point, t_point2d *pixel_pos);
+void			ft_get_perspective(t_point3d *point, t_point2d *pixel_pos);
+void			ft_get_orthographic(t_point3d *point, t_point2d *pixel_pos);
+void			ft_set_isometric_projection(t_fdf *fdf);
+void			ft_set_parallel_projection(t_fdf *fdf);
+void			ft_set_perspective_projection(t_fdf *fdf);
+void			ft_set_orthographic_projection(t_fdf *fdf);
 
 // hooks
 void			ft_hooks_setup(t_fdf *fdf);
 void			ft_on_resize(int32_t width, int32_t height, void *param);
 void			ft_loop(void *param);
 void			ft_check_key_presses(t_fdf *fdf);
+void			ft_key_hook(mlx_key_data_t key_data, void *param);
 
 // offset functions
 # define OFFSET_STEP 10
