@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 11:25:04 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/27 14:57:33 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/28 13:08:44 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ t_list				*ft_lstnew(void *content);
 // custom functions
 bool				ft_aisi(char *str);
 bool				ft_aish(char *str);
+uint32_t			ft_atocolor(const char *str);
 unsigned int		ft_htoi(char *str);
 bool				ft_in_charset(char c, char *set);
 void				ft_free_strs(char **strs);

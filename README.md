@@ -1,3 +1,6 @@
 # todo 
-- fix hex parsing
-- add projections 
+- add projections
+- Fix Makefile
+- fix Performance
+- Leaks?
+- Fix Pyra.fdf
