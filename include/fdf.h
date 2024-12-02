@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:48:51 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/28 14:04:04 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/28 15:41:31 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define COLOR_LIGHT_GRAY 0xD3D3D3FFU
 # define COLOR_DARK_GRAY 0xA9A9A9FFU
 
-# define DEFAULT_COLOR COLOR_WHITE
+# define DEFAULT_COLOR 0
 # define BACKGROUND_COLOR COLOR_GRAY
 
 // base structs

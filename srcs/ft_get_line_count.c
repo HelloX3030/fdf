@@ -6,42 +6,29 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 14:13:11 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/19 15:06:22 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/12/02 16:23:29 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static char	*find_next_nl(char *buffer, ssize_t bytes_read)
+static int	count_nls(char *buffer, ssize_t bytes_read, bool *nl_found)
 {
-	ssize_t	i;
-
-	i = 0;
-	while (i < bytes_read && buffer[i])
-	{
-		if (buffer[i] == '\n')
-			return (buffer + i);
-		i++;
-	}
-	return (NULL);
-}
-
-static int	count_nls(char *buffer, ssize_t bytes_read)
-{
-	char	*old_nl;
-	char	*next_nl;
-	int		count;
+	int	count;
+	int	i;
 
 	count = 0;
-	old_nl = buffer;
-	next_nl = find_next_nl(buffer, bytes_read);
-	while (next_nl)
+	i = 0;
+	while (i < bytes_read)
 	{
-		if (next_nl - old_nl > 1)
+		if (buffer[i] == '\n')
+			*nl_found = true;
+		else if (buffer[i] != '\n' && *nl_found)
+		{
 			count++;
-		old_nl = next_nl;
-		next_nl++;
-		next_nl = find_next_nl(next_nl, bytes_read - (next_nl - buffer));
+			*nl_found = false;
+		}
+		i++;
 	}
 	return (count);
 }
@@ -51,12 +38,14 @@ int	ft_get_line_count(int fd)
 	char	buffer[BUFFER_SIZE];
 	int		count;
 	ssize_t	bytes_read;
+	bool	nl_found;
 
+	nl_found = true;
 	count = 0;
 	bytes_read = read(fd, buffer, BUFFER_SIZE);
 	while (bytes_read > 0)
 	{
-		count += count_nls(buffer, bytes_read);
+		count += count_nls(buffer, bytes_read, &nl_found);
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 	}
 	if (bytes_read < 0)

@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:34:24 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/28 14:12:31 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/11/28 15:19:16 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_get_parallel(t_point3d *point, t_point2d *pixel_pos)
 void	ft_get_perspective(t_point3d *point, t_point2d *pixel_pos)
 {
 	double			z;
-	const double	epsilon = 1e-6;
+	const double	epsilon = 0.0001;
 
 	z = 1 + point->z / 100.0;
 	if (fabs(z) < epsilon)

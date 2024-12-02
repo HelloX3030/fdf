@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:11:13 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/22 15:32:54 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/12/02 16:46:28 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,20 @@ static int	ft_get_map_width(int fd)
 	char	*first_line;
 	int		i;
 	int		count;
+	bool	space_found;
 
 	first_line = get_next_line(fd);
-	count = 1;
+	count = 0;
 	i = 0;
+	space_found = true;
 	while (first_line[i])
 	{
-		if (first_line[i] == ' ' && !ft_in_charset(first_line[i + 1], " \n"))
+		if (first_line[i] == ' ')
+			space_found = true;
+		else if (space_found)
 		{
-			if (first_line[i + 1])
-				count++;
+			count++;
+			space_found = false;
 		}
 		i++;
 	}
