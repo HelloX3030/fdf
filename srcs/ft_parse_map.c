@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:51:55 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/28 13:10:46 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/12/03 15:34:55 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static int	parse_pair(t_map *map, char **pairs)
 	if (!split)
 		return (ft_printf("Failed to Split Pair: %s\n", pairs[map->pos.x]) - 1);
 	map->map[map->pos.x][map->pos.y] = ft_atoi(split[0]);
+	ft_remove_c(split[1], "\n");
 	if (ft_aish(split[1]))
 		map->color[map->pos.x][map->pos.y] = ft_atocolor(split[1]);
 	else

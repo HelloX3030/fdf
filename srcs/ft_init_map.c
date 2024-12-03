@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 14:09:17 by lseeger           #+#    #+#             */
-/*   Updated: 2024/11/22 15:34:35 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/12/03 13:44:00 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ static int	malloc_colors(t_map *map)
 {
 	int	x;
 
-	x = -1;
-	map->color = malloc(sizeof(unsigned int *) * map->width);
+	map->color = malloc(sizeof(uint32_t *) * map->width);
 	if (!map->color)
 		return (-1);
+	x = -1;
 	while (++x < map->width)
 	{
-		map->color[x] = malloc(sizeof(unsigned int) * map->height);
+		map->color[x] = malloc(sizeof(uint32_t) * map->height);
 		if (!map->color[x])
 		{
 			while (--x >= 0)

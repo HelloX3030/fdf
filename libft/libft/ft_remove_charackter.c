@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_remove_charackter.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 13:21:44 by lseeger           #+#    #+#             */
-/*   Updated: 2024/12/03 14:29:39 by lseeger          ###   ########.fr       */
+/*   Created: 2024/12/03 15:10:06 by lseeger           #+#    #+#             */
+/*   Updated: 2024/12/03 15:15:57 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_remove_c(char *str, char *set)
 {
-	t_fdf	fdf;
+	char	*src;
+	char	*dst;
 
-	ft_init_fdf(&fdf, ft_get_file_path(argc, argv));
-	ft_print_map(&fdf.map, true, true);
-	ft_hooks_setup(&fdf);
-	mlx_loop(fdf.mlx);
-	ft_free_fdf_content(&fdf);
-	system("leaks fdf");
-	return (0);
+	if (!str || !set)
+		return ;
+	src = str;
+	dst = str;
+	while (*src)
+	{
+		if (!ft_in_charset(*src, set))
+		{
+			*dst = *src;
+			dst++;
+		}
+		src++;
+	}
+	*dst = 0;
 }
