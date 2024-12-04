@@ -59,9 +59,9 @@ clean:
 # fclean
 fclean:
 	$(RM) -rf $(OBJ_DIR)
-	$(RM) -rf $(LIBMLX)/build
+	$(RM) -rf $(LIBMLX_DIR)/build
 	$(RM) -f $(NAME)
-	$(RM) -C $(LIBFT_DIR) fclean
+	$(MAKE) -C $(LIBFT_DIR) fclean
 
 # re
 re: fclean all
