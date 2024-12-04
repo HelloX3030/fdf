@@ -6,7 +6,7 @@
 /*   By: lseeger <lseeger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:14:34 by lseeger           #+#    #+#             */
-/*   Updated: 2024/12/03 15:33:14 by lseeger          ###   ########.fr       */
+/*   Updated: 2024/12/04 13:04:24 by lseeger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool	ft_aish(char *str)
 	str++;
 	while (*str)
 	{
-		if (!ft_in_charset(*str, "abcdefABCDEF"))
+		if (!ft_in_charset(*str, "0123456789abcdefABCDEF"))
 			return (false);
 		str++;
 	}
