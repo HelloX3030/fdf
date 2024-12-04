@@ -25,7 +25,8 @@ LIBMLX	:= lib/MLX42
 # includes 
 INCLUDES := -I include -I libft -I $(LIBMLX)/include
 LIBS := $(LIBFT) $(LIBMLX)/build/libmlx42.a
-LIB_FLAGS := -ldl -lglfw -pthread -lm
+LDFLAGS := -L$(LIBFT_DIR)
+LIB_FLAGS := -ldl -lglfw -pthread -lm -lft
 
 # all
 all: libmlx $(NAME)
@@ -36,8 +37,7 @@ libmlx:
 
 # Regular Objs
 $(NAME): $(OBJ_FILES) $(LIBS)
-	cp $(LIBFT) $(NAME)
-	$(CC) $(OBJ_FILES) $(LIBS) $(LIB_FLAGS) -o $(NAME)
+	$(CC) $(OBJ_FILES) $(LIBS) $(LDFLAGS) $(LIB_FLAGS) -o $(NAME)
 
 # Compile OBJ_FILES
 $(OBJ_DIR)/%.o: %.c $(H_FILES) | $(OBJ_DIR)
@@ -47,7 +47,7 @@ $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
 $(LIBFT):
-	make -C $(LIBFT_DIR)
+	$(MAKE) -C $(LIBFT_DIR)
 
 $(TEST_OBJ): %.o: %.c $(H_FILES)
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
